@@ -1,0 +1,43 @@
+.paral {
+  min-height: 600px;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 50% 50%;
+
+  h1 {
+    font-size: 60px;
+    text-align: center;
+    padding-top: 60px;
+    line-height: 100px;
+  }
+
+  p {
+    font-size: 24px;
+    text-align: center;
+    line-height: 1.4em;
+    max-width: 400px;
+    margin: auto;
+  }
+}
+
+.paralsec1-image {
+  background-image: linear-gradient(
+      rgba(29, 38, 113, 0.5),
+      rgba(29, 39, 133, 0.5)
+    ),
+    url("../img/daegu.jpg");
+}
+.paralsec2-image {
+  background-image: linear-gradient(
+      rgba(29, 38, 113, 0.5),
+      rgba(29, 39, 133, 0.5)
+    ),
+    url("../img/mount-fuji.jpg");
+}
+.paralsec3-image {
+  background-image: linear-gradient(
+      rgba(29, 38, 113, 0.5),
+      rgba(29, 39, 133, 0.5)
+    ),
+    url("../img/jeju.jpg");
+}
