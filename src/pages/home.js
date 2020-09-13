@@ -17,10 +17,7 @@ const Home = () => {
 
       <section className="paral text-dark">
         <h2>Latest Posts</h2>
-        <div
-          className="d-flex flex-wrap align-content-middle align-items-center justify-content-around"
-          style={{ height: "600px" }}
-        >
+        <div className="d-flex flex-wrap align-content-middle align-items-center justify-content-around">
           {cards.map((index) => (
             <BlogCard key={index} />
           ))}
