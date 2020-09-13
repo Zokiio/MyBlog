@@ -1,6 +1,8 @@
 import React from "react";
+import BlogCard from "../components/blog-card";
 
 const Home = () => {
+  const cards = [1, 2, 3];
   return (
     <main className="text-light">
       {/*Welcome */}
@@ -14,17 +16,14 @@ const Home = () => {
       {/*Latest Blog posts */}
 
       <section className="paral text-dark">
-        <p>Latest Posts</p>
+        <h2>Latest Posts</h2>
         <div
-          class="d-flex flex-wrap align-content-middle justify-content-around"
+          className="d-flex flex-wrap align-content-middle align-items-center justify-content-around"
           style={{ height: "600px" }}
         >
-          <div class="col-md-4 col-sm-6 border">Latest blogposts here</div>
-          <div class="col-md-4 col-sm-6 border">Latest blogposts here</div>
-          <div class="col-md-4 col-sm-6 border">Latest blogposts here</div>
-          <div class="col-md-4 col-sm-6 border">Latest blogposts here</div>
-          <div class="col-md-4 col-sm-6 border">Latest blogposts here</div>
-          <div class="col-md-4 col-sm-6 border">Latest blogposts here</div>
+          {cards.map((index) => (
+            <BlogCard key={index} />
+          ))}
         </div>
       </section>
 

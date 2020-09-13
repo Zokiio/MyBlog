@@ -1,11 +1,24 @@
-import React from 'react'
+import React from "react";
+import BlogCard from "../components/blog-card";
 
 const Blog = () => {
-    return (
-        <div>
-            Blog
-        </div>
-    )
-}
+  const cards = [1, 2, 3, 4, 5];
 
-export default Blog
+  return (
+    <main className="container">
+      <div className="row">
+        {/*Blog Posts*/}
+        <section className="col-md-9 border d-flex flex-wrap justify-content-between">
+          {cards.map((index) => (
+            <BlogCard key={index} />
+          ))}
+        </section>
+
+        {/*Navigate? Posts*/}
+        <div className="col-md-3 border">menu</div>
+      </div>
+    </main>
+  );
+};
+
+export default Blog;
