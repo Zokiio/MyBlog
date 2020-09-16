@@ -1,24 +1,24 @@
 import React from "react";
-import daegu from "../assets/img/daegu.jpg";
+import { Link } from "react-router-dom";
 
-const BlogCard = () => {
+const BlogCard = ({ article }) => {
+  console.log(article);
   return (
-    <div className="card" style={{ width: "20rem", border: "none" }}>
-      <img
-        src={daegu}
-        className="card-img-top"
-        style={{ borderRadius: "5px", boxShadow: "black" }}
-        alt="#"
-      />
-      <div className="card-body">
-        <p className="tags">Korea</p>
-        <h5 className="card-title">On my way to Korea</h5>
-        <p className="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
+    <Link to={{ pathname: "article", query: { id: article.id } }}>
+      <div className="card" style={{ width: "20rem", border: "none" }}>
+        <img
+          src={process.env.API_URL + article.displayimage.url}
+          className="card-img-top"
+          style={{ borderRadius: "5px", boxShadow: "black" }}
+          alt="#"
+        />
+        <div className="card-body">
+          <p className="tags">{article.published_at}</p>
+          <h5 className="card-title">{article.title}</h5>
+          <p className="card-text">{article.preview}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

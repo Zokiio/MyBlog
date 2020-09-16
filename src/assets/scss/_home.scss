@@ -16,6 +16,7 @@
     text-align: center;
     padding-top: 32px;
     line-height: 50px;
+    margin-bottom: 40px;
   }
 
   p {
@@ -24,6 +25,18 @@
     line-height: 1.4em;
     max-width: 400px;
     margin: auto;
+  }
+}
+
+.card {
+  img {
+    box-shadow: 3px 3px 10px #000;
+    height: 180px;
+  }
+
+  p {
+    text-align: left;
+    margin-left: 0;
   }
 }
 
