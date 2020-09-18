@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ article }) => {
-  console.log(article);
   return (
-    <Link to={{ pathname: "article", query: { id: article.id } }}>
+    <Link to={{ pathname: `blog/${article.id}` }}>
       <div className="card" style={{ width: "20rem", border: "none" }}>
         <img
           src={process.env.API_URL + article.displayimage.url}

@@ -1,23 +1,21 @@
 import React from "react";
-import BlogCard from "../components/blog-card";
+import { useRouteMatch, Switch, Route } from "react-router-dom";
+import Article from "./article";
 
 const Blog = () => {
   const cards = [1, 2, 3, 4, 5];
+  let { path, url } = useRouteMatch();
 
   return (
     <main className="container test-dark">
-      <p>Kommer stuff här sen</p>
-      <div className="row">
-        {/*Blog Posts*/}
-        <section className="col-md-9 border d-flex flex-wrap justify-content-between">
-          {cards.map((index) => (
-            <BlogCard key={index} />
-          ))}
-        </section>
-
-        {/*Navigate? Posts*/}
-        <div className="col-md-3 border">menu</div>
-      </div>
+      <Switch>
+        <Route exact path={path}>
+          <h3>All articles will be listed here later</h3>
+        </Route>
+        <Route path={`${path}/:articleId`}>
+          <Article />
+        </Route>
+      </Switch>
     </main>
   );
 };

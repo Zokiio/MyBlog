@@ -3,14 +3,14 @@ import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navigation from "./components/navigation";
 import Home from "./pages/home";
+import Blog from "./pages/blog";
+import Article from "./pages/article";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-
-import PageRenderer from "./page-renderer";
 
 const App = () => {
   const [client, setClient] = useState(
     new ApolloClient({
-      uri: "http://localhost:1337/graphql",
+      uri: process.env.API_URI,
       cache: new InMemoryCache(),
     })
   );
@@ -21,7 +21,7 @@ const App = () => {
       <Router>
         <Navigation />
         <Switch>
-          <Route path="/:page" component={PageRenderer} />
+          <Route path="/blog" component={Blog} />
           <Route path="/" component={Home} />
           <Route component={() => 404} />
         </Switch>

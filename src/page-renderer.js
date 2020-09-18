@@ -4,8 +4,6 @@ import { useRouteMatch } from "react-router-dom";
 const generatePage = (page) => {
   const component = () => require(`./pages/${page}`).default;
 
-  console.log(page);
-
   try {
     return React.createElement(component());
   } catch (err) {
@@ -16,7 +14,7 @@ const generatePage = (page) => {
 
 const PageRenderer = () => {
   const {
-    params: { page }
+    params: { page },
   } = useRouteMatch();
 
   return generatePage(page);
