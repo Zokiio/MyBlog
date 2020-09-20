@@ -1,12 +1,12 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
-const ARTICLE_QUERY = gql`
+const ARTICLES_QUERY = gql`
   query articles {
     articles {
       id
       title
       preview
-      displayimage {
+      cover_uri {
         url
       }
       published_at
@@ -14,4 +14,4 @@ const ARTICLE_QUERY = gql`
   }
 `;
 
-export default ARTICLE_QUERY;
+export default ARTICLES_QUERY;

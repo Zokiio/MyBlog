@@ -4,16 +4,15 @@ import Query from "../components/query";
 import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router-dom";
 
-const Article = (id) => {
+const Article = () => {
   let { articleId } = useParams();
 
   return (
     <Query query={ARTICLE_QUERY} id={articleId}>
       {({ data: { article } }) => {
-        const imageUrl =
-          process.env.NODE_ENV !== "development"
-            ? process.env.API_URI + article.cover_uri.url
-            : process.env.API_URI + article.cover_uri.url;
+        console.log(article);
+        const imageUrl = process.env.API_URI;
+
         return (
           <div>
             <div>

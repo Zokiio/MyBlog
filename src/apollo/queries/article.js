@@ -1,12 +1,12 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 const ARTICLE_QUERY = gql`
-  query Articles($id: ID!) {
+  query article($id: ID!) {
     article(id: $id) {
       id
       title
       content
-      displayimage {
+      cover_uri {
         url
       }
       published_at

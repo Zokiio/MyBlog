@@ -1,7 +1,7 @@
 import React from "react";
 import BlogCard from "../components/blog-card";
 import Query from "../components/query";
-import ARTICLE_QUERY from "../apollo/queries/articles";
+import ARTICLES_QUERY from "../apollo/queries/articles";
 
 const Home = () => {
   return (
@@ -18,15 +18,17 @@ const Home = () => {
       <section className="paral text-dark pb-5">
         <h2>Latest Posts</h2>
         <div className="d-flex flex-wrap align-content-middle  justify-content-around">
-          <Query query={ARTICLE_QUERY}>
-            {({ data: { articles } }) => {
-              return articles
-                .map((article) => (
-                  <BlogCard key={article.id} article={article} />
-                ))
-                .reverse();
-            }}
-          </Query>
+          {
+            <Query query={ARTICLES_QUERY}>
+              {({ data: { articles } }) => {
+                return articles
+                  .map((article) => (
+                    <BlogCard key={article.id} article={article} />
+                  ))
+                  .reverse();
+              }}
+            </Query>
+          }
         </div>
       </section>
 

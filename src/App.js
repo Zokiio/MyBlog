@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ApolloProvider } from "@apollo/client";
+import { ApolloProvider, gql } from "@apollo/client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navigation from "./components/navigation";
 import Home from "./pages/home";
@@ -10,7 +10,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 const App = () => {
   const [client, setClient] = useState(
     new ApolloClient({
-      uri: process.env.API_URI,
+      uri: process.env.API_URI + "/graphql",
       cache: new InMemoryCache(),
     })
   );

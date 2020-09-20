@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ article }) => {
+  console.log("[BlogCard]");
+  console.log(article);
   return (
     <Link to={{ pathname: `blog/${article.id}` }}>
       <div className="card" style={{ width: "20rem", border: "none" }}>
         <img
-          src={process.env.API_URL + article.displayimage.url}
+          src={process.env.API_URI + article.cover_uri.url}
           className="card-img-top"
           style={{ borderRadius: "5px", boxShadow: "black" }}
           alt="#"

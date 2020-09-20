@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode=production --open --hot",
-    "dev": "webpack-dev-server --mode=development --open --hot",
+    "dev": "webpack-dev-server -r dotenv/config --mode=development --open --hot",
     "build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -34,6 +34,7 @@
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.1",
+    "dotenv": "^8.2.0",
     "dotenv-webpack": "^2.0.0",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.3.0",
