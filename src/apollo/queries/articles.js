@@ -8,6 +8,7 @@ const ARTICLES_QUERY = gql`
       preview
       cover_uri {
         url
+        provider_metadata
       }
       published_at
     }
