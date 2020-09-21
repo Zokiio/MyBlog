@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Image, Placeholder } from "cloudinary-react";
+import { Image } from "cloudinary-react";
 
 const BlogCard = ({ article }) => {
   console.log("[BlogCard]");
