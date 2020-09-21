@@ -3,7 +3,7 @@ import ARTICLE_QUERY from "../apollo/queries/article";
 import Query from "../components/query";
 import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router-dom";
-import { Image, Placeholder } from "cloudinary-react";
+import { Image, Placeholder, Transformation } from "cloudinary-react";
 
 const Article = () => {
   let { articleId } = useParams();
@@ -15,14 +15,19 @@ const Article = () => {
 
         return (
           <div>
-            <div>
+            <div className="container">
               <Image
+                dpr="auto"
+                responsive
+                width="auto"
+                crop="scale"
+                responsiveUseBreakpoints="true"
                 cloudName="zottik"
-                publicId={
-                  "large_" + article.cover_uri.provider_metadata.public_id
-                }
+                publicId={article.cover_uri.provider_metadata.public_id}
               >
-                <Placeholder />
+                <Placeholder type="blur" />
+                <Transformation fetchFormat="auto" crop="fill" />
+                <Transformation radius="30" />
               </Image>
               <h1>{article.title}</h1>
             </div>
