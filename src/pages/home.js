@@ -34,7 +34,7 @@ const Home = () => {
 
       {/*About me */}
       <section className="paral paralsec2-image">
-        <h1>Something</h1>
+        <h1>Social Links</h1>
         <p>Fill with nsomethin about me</p>
       </section>
       <section className="paral text-dark">
