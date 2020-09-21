@@ -7,7 +7,7 @@ const ARTICLE_QUERY = gql`
       title
       content
       cover_uri {
-        url
+        provider_metadata
       }
       published_at
     }
