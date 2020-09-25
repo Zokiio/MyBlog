@@ -21,7 +21,9 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: process.env.API_URI || "http://localhost:1337",
+        apiURL: process.env.API_URI
+          ? "https://zottik-app.herokuapp.com/"
+          : "http://localhost:1337",
         contentTypes: [
           // List of the Content Types you want to be able to request from Gatsby.
           "articles",
@@ -36,7 +38,6 @@ module.exports = {
         cloudName: process.env.CLOUDINARY_CLOUD_NAME,
         apiKey: process.env.CLOUDINARY_API_KEY,
         apiSecret: process.env.CLOUDINARY_API_SECRET,
-        uploadFolder: "develop",
       },
     },
     `gatsby-transformer-sharp`,
@@ -55,6 +56,6 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`, // TODO activate this
+    `gatsby-plugin-offline`,
   ],
 }
