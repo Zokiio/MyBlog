@@ -9,10 +9,19 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
-import "./layout.css"
+import { makeStyles } from "@material-ui/core/styles"
+import { CssBaseline, Fade } from "@material-ui/core"
+import Navbar from "./navbar"
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    minHeight: "100vh",
+    color: "#fff",
+  },
+}))
 
 const Layout = ({ children }) => {
+  const classes = useStyles()
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -24,25 +33,13 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+    <div className={classes.root}>
+      <CssBaseline />
+      <Navbar siteTitle={data.site.siteMetadata?.title || "Zottik"} />
+      <Fade in mountOnEnter unmountOnExit>
         <main>{children}</main>
-        <footer style={{
-          marginTop: `2rem`
-        }}>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
+      </Fade>
+    </div>
   )
 }
 

@@ -1,11 +1,16 @@
+if (process.env.ENVIROMENT !== "production") {
+  require("dotenv").config()
+}
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Zottik`,
+    description: `Hey! This is Zokiios little hangout!`,
+    author: `@Zokiio`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-theme-material-ui`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -13,13 +18,34 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: "gatsby-source-strapi",
+      options: {
+        apiURL: process.env.API_URI || "http://localhost:1337",
+        contentTypes: [
+          // List of the Content Types you want to be able to request from Gatsby.
+          "articles",
+          "categories",
+        ],
+        queryLimit: 1000,
+      },
+    },
+    {
+      resolve: "gatsby-transformer-cloudinary",
+      options: {
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+        apiKey: process.env.CLOUDINARY_API_KEY,
+        apiSecret: process.env.CLOUDINARY_API_SECRET,
+        uploadFolder: "develop",
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `zottik`,
+        short_name: `zottik`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -29,6 +55,6 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    // `gatsby-plugin-offline`, // TODO activate this
   ],
 }
