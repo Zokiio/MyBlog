@@ -5,8 +5,29 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { DiscussionEmbed } from "disqus-react"
 import dayjs from "dayjs"
+import { makeStyles } from "@material-ui/core"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    color: "#000",
+    display: "flex",
+    flexDirection: "column",
+    height: "100vh",
+    margin: "80px 20% 80px 20%",
+  },
+  rootMin: {
+    color: "#000",
+    display: "flex",
+    flexDirection: "column",
+    height: "100vh",
+    margin: "80px 2px 80px 2px",
+  },
+}))
 
 const ArticleTemplate = ({ data }) => {
+  const classes = useStyles()
+  const matches = useMediaQuery("(min-width:600px)")
   const article = data.strapiArticles
   const disqusShortName = "zottik"
   const disqusConfig = {
@@ -17,16 +38,17 @@ const ArticleTemplate = ({ data }) => {
   return (
     <Layout>
       <SEO title={article.title} />
-      <h1>{article.title}</h1>
-      <span className="date">
-        <i className="fas fa-calendar-alt"></i>{" "}
-        {dayjs(article.published_at).format("YYYY-MM-DD")}
-      </span>
-      <Img fixed={article.image.childImageSharp.fixed} />
-      <p>{article.content}</p>
-
-      <div>
-        <DiscussionEmbed shortname={disqusShortName} config={disqusConfig} />
+      <div className={matches ? classes.root : classes.rootMin}>
+        <h1>{article.title}</h1>
+        <span className="date">
+          <i className="fas fa-calendar-alt"></i>{" "}
+          {dayjs(article.published_at).format("YYYY-MM-DD")}
+        </span>
+        <Img fixed={article.image.childImageSharp.fixed} />
+        <p>{article.content}</p>
+        <div>
+          <DiscussionEmbed shortname={disqusShortName} config={disqusConfig} />
+        </div>
       </div>
     </Layout>
   )
