@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 import { DiscussionEmbed } from "disqus-react"
 import dayjs from "dayjs"
 import { makeStyles } from "@material-ui/core"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
+import ReactMarkdown from "react-markdown"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,20 +14,21 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     height: "100vh",
-    margin: "80px 20% 80px 20%",
-  },
-  rootMin: {
-    color: "#000",
-    display: "flex",
-    flexDirection: "column",
-    height: "100vh",
     margin: "80px 2px 80px 2px",
+    [theme.breakpoints.up("sm")]: {
+      margin: "80px 20% 80px 20%",
+    },
+  },
+  ReactMD: {
+    "& img": {
+      maxWidth: "400px",
+    },
   },
 }))
 
 const ArticleTemplate = ({ data }) => {
+  console.log(data)
   const classes = useStyles()
-  const matches = useMediaQuery("(min-width:600px)")
   const article = data.strapiArticles
   const disqusShortName = "zottik"
   const disqusConfig = {
@@ -38,14 +39,17 @@ const ArticleTemplate = ({ data }) => {
   return (
     <Layout>
       <SEO title={article.title} />
-      <div className={matches ? classes.root : classes.rootMin}>
+      <div className={classes.root}>
         <h1>{article.title}</h1>
         <span className="date">
           <i className="fas fa-calendar-alt"></i>{" "}
           {dayjs(article.published_at).format("YYYY-MM-DD")}
         </span>
         <Img fixed={article.image.childImageSharp.fixed} />
-        <p>{article.content}</p>
+        <ReactMarkdown
+          source={article.content}
+          className={("reactMD", classes.reactMD)}
+        />
         <div>
           <DiscussionEmbed shortname={disqusShortName} config={disqusConfig} />
         </div>
@@ -56,27 +60,31 @@ const ArticleTemplate = ({ data }) => {
 
 export default ArticleTemplate
 
-export const query = graphql`
-  query ArticleTemplate($eq: String) {
-    strapiArticles(slug: { eq: $eq }) {
-      id
-      title
-      content
-      published_at
-      image {
-        childImageSharp {
-          fixed(width: 200, height: 125) {
-            height
-            width
-            src
-            srcSet
-            base64
-            tracedSVG
-            srcWebp
-            srcSetWebp
+export const query = data => {
+  console.log("[TEST]")
+  console.log(data)
+  return graphql`
+    query ArticleTemplate($slug: String) {
+      strapiArticles(slug: { eq: $slug }) {
+        id
+        title
+        content
+        published_at
+        image {
+          childImageSharp {
+            fixed(width: 200, height: 125) {
+              height
+              width
+              src
+              srcSet
+              base64
+              tracedSVG
+              srcWebp
+              srcSetWebp
+            }
           }
         }
       }
     }
-  }
-`
+  `
+}

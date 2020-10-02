@@ -47,6 +47,7 @@ exports.createPages = async ({ actions, graphql }) => {
       throw result.errors
     }
 
+    console.log(result.data.allStrapiArticles.edges)
     // Create pages for each article.
     result.data.allStrapiArticles.edges.forEach(edge => {
       createPage({
