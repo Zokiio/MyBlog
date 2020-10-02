@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { DiscussionEmbed } from "disqus-react"
 import dayjs from "dayjs"
-import { makeStyles } from "@material-ui/core"
+import { CardMedia, makeStyles } from "@material-ui/core"
 import ReactMarkdown from "react-markdown"
 
 const useStyles = makeStyles(theme => ({
@@ -16,13 +16,12 @@ const useStyles = makeStyles(theme => ({
     height: "100vh",
     margin: "80px 2px 80px 2px",
     [theme.breakpoints.up("sm")]: {
-      margin: "80px 20% 80px 20%",
+      margin: "80px auto",
     },
+    maxWidth: "800px",
   },
   ReactMD: {
-    "& img": {
-      maxWidth: "400px",
-    },
+    maxWidth: "400px",
   },
 }))
 
@@ -36,6 +35,11 @@ const ArticleTemplate = ({ data }) => {
     title: article.title,
   }
 
+  const imageRender = img => {
+    console.log(img)
+    return <img {...img} className={classes.ReactMD} />
+  }
+
   return (
     <Layout>
       <SEO title={article.title} />
@@ -45,10 +49,13 @@ const ArticleTemplate = ({ data }) => {
           <i className="fas fa-calendar-alt"></i>{" "}
           {dayjs(article.published_at).format("YYYY-MM-DD")}
         </span>
-        <Img fixed={article.image.childImageSharp.fixed} />
+        <CardMedia>
+          <Img fixed={article.image.childImageSharp.fixed} />
+        </CardMedia>
         <ReactMarkdown
           source={article.content}
-          className={("reactMD", classes.reactMD)}
+          className="reactMD"
+          renderers={{ image: imageRender }}
         />
         <div>
           <DiscussionEmbed shortname={disqusShortName} config={disqusConfig} />
