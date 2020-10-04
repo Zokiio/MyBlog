@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    flexWrap: "wrap",
   },
 }))
 
@@ -30,9 +31,11 @@ const CardList = ({ listTitle, articles, location }) => {
       <h1 className={classes.title}>{listTitle}</h1>
       <div className={classes.cardsContainer}>
         {articles ? (
-          articles.map(({ node }) => (
-            <BlogCard key={node.id} article={node} location={location} />
-          ))
+          articles
+            .reverse()
+            .map(({ node }) => (
+              <BlogCard key={node.id} article={node} location={location} />
+            ))
         ) : (
           <p>Loading...</p>
         )}
